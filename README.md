@@ -1,18 +1,92 @@
-# Mental-Health-Risk-Classification
+🧠 Mental Health Risk Classification
+📌 Introduction
+Mental health in the workplace is a growing concern, and early detection of risk levels is essential for providing timely support and intervention.
+In this project, we aim to classify individuals into Low, Medium, or High mental health risk categories using machine learning techniques.
 
-Introduction
+Our model is built on a synthetic dataset of 10,000 individuals, generated to reflect realistic trends found in global workplace mental health studies.
+The data includes variables such as demographics, employment status, mental health history, treatment-seeking behavior, and social support — while maintaining complete privacy and anonymity.
 
-Mental health in the workplace is a critical issue, and understanding its patterns is crucial for designing effective policies and interventions.
-In this project, we focused on classifying individuals into low, medium, or high mental health risk categories.
-We also wanted to identify the best predictor of mental health risk.
-Our predictions are based on a variety of features, including demographic information, employment details, and levels of support in the workplace.
-To build our model, we used data from a global mental health survey of 10,000 individuals.
-The dataset is synthetic, meaning it's been generated to reflect realistic patterns observed in workplace mental health studies, while also ensuring complete privacy and anonymity for all participants.
+🎯 Project Objective
+Predict mental health risk levels (Low, Medium, High)
 
-Methodology
+Prioritize recall for High-risk individuals to ensure they are correctly identified
 
-Our goal in this project is to classify individuals into low, medium, or high mental health risk categories using machine learning.
-We started by exploring all the features using visualizations and summary statistics to better understand how each variable relates to mental health risk.
-Next, we moved to feature selection, where we tried to identify the most relevant variables so that we kept only features that added value to the model.
-Then came preprocessing: the data was already clean, so there was no need to, for example, handle missing values. However, we did need to do encoding of the categorical features to prepare the dataset for modeling.
-Finally, we trained and evaluated four classifiers — Logistic Regression, Random Forest, XGBoost, and LightGBM — and compared their performance using metrics like accuracy and recall to determine the best-performing model.
+Evaluate and compare multiple machine learning models to find the most effective approach
+
+🧪 Methodology
+We followed a structured pipeline:
+
+1. Exploration
+Performed data exploration using summary statistics and visualizations
+
+Analyzed correlations between features and mental health risk levels
+
+2. Feature Selection
+Selected features based on correlation strength and interpretability
+
+Final selected features: productivity_score, anxiety_score
+
+3. Preprocessing
+Encoded categorical variables
+
+Split dataset into training and testing sets with stratified sampling
+
+4. Model Training & Evaluation
+Trained and compared four classifiers:
+
+Logistic Regression
+
+Random Forest
+
+XGBoost
+
+LightGBM
+
+Used evaluation metrics:
+
+Accuracy
+
+Precision
+
+Recall
+
+F1 Score (macro)
+
+Focused on High-risk recall as a critical metric
+
+📈 Results
+Model	Accuracy	High Recall	F1 Score (Macro)
+Logistic Regression	0.890	0.87	0.88
+Random Forest	0.857	0.86	0.84
+XGBoost	0.887	0.87	0.88
+LightGBM (Tuned)	0.872	0.93	0.87
+
+⚡ After tuning LightGBM (with recall_macro as scoring), we achieved 93% recall for High-risk cases
+
+Slight trade-off in accuracy was acceptable to increase model sensitivity for critical predictions
+
+🔧 Tuning Strategy
+Used GridSearchCV to optimize LightGBM hyperparameters:
+
+learning_rate, num_leaves, n_estimators, max_depth
+
+Scoring objective: recall_macro
+
+Goal: Maximize recall across all classes, especially High-risk
+
+💡 Key Insights
+Productivity score and anxiety score were highly correlated with mental health risk
+
+Simple models (like Logistic Regression) performed competitively
+
+Prioritizing recall over accuracy led to more responsible, real-world-aligned performance
+
+🚀 Future Improvements
+Experiment with custom class weights to further emphasize High-risk detection
+
+Add more features such as stress_level or mental_health_history
+
+Test model robustness on unseen or noisy data
+
+Deploy model for potential real-time mental health screening scenarios
+
