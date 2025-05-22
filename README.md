@@ -1,92 +1,82 @@
-🧠 Mental Health Risk Classification
-📌 Introduction
-Mental health in the workplace is a growing concern, and early detection of risk levels is essential for providing timely support and intervention.
-In this project, we aim to classify individuals into Low, Medium, or High mental health risk categories using machine learning techniques.
+# 🧠 Mental Health Risk Classification
 
-Our model is built on a synthetic dataset of 10,000 individuals, generated to reflect realistic trends found in global workplace mental health studies.
-The data includes variables such as demographics, employment status, mental health history, treatment-seeking behavior, and social support — while maintaining complete privacy and anonymity.
+> A machine learning project to classify individuals into **Low**, **Medium**, or **High** mental health risk levels based on workplace-related survey data.  
+> Focus: Improve **recall for High-risk cases** using model tuning and careful feature selection.
 
-🎯 Project Objective
-Predict mental health risk levels (Low, Medium, High)
+---
 
-Prioritize recall for High-risk individuals to ensure they are correctly identified
+## 📌 Project Overview
 
-Evaluate and compare multiple machine learning models to find the most effective approach
+- 📊 Dataset: Synthetic mental health survey data (10,000 individuals)  
+- 🎯 Goal: Predict mental health risk level and prioritize early detection of **high-risk individuals**
+- 🔧 Tools: Python, Pandas, Scikit-learn, XGBoost, LightGBM, Matplotlib, Seaborn
 
-🧪 Methodology
-We followed a structured pipeline:
+---
 
-1. Exploration
-Performed data exploration using summary statistics and visualizations
+## 🧪 Methodology
 
-Analyzed correlations between features and mental health risk levels
+### 1. **Explore**
+- Analyzed distributions and correlations between features and risk levels
 
-2. Feature Selection
-Selected features based on correlation strength and interpretability
+### 2. **Select**
+- Chose most predictive features based on insight & correlation  
+  → Final features: `productivity_score`, `anxiety_score`
 
-Final selected features: productivity_score, anxiety_score
+### 3. **Preprocess**
+- Encoded categorical variables  
+- Stratified train/test split for balanced evaluation
 
-3. Preprocessing
-Encoded categorical variables
+### 4. **Train**
+- Trained and compared four models:
+  - Logistic Regression
+  - Random Forest
+  - XGBoost
+  - LightGBM
 
-Split dataset into training and testing sets with stratified sampling
+### 5. **Tune**
+- Tuned LightGBM with `GridSearchCV`  
+- Scoring metric: `recall_macro`  
+- Goal: Improve **High-risk recall**
 
-4. Model Training & Evaluation
-Trained and compared four classifiers:
+---
 
-Logistic Regression
+## 📈 Results Summary
 
-Random Forest
+| Model               | Accuracy | High Recall | F1 Score (Macro) |
+|--------------------|----------|-------------|------------------|
+| Logistic Regression | 0.890    | 0.87        | 0.88             |
+| Random Forest       | 0.857    | 0.86        | 0.84             |
+| XGBoost             | 0.887    | 0.87        | 0.88             |
+| **LightGBM (Tuned)**| 0.872    | **0.93**    | 0.87             |
 
-XGBoost
+> ✅ LightGBM tuning helped us **maximize recall for High-risk individuals**  
+> 🎯 Even with slight accuracy tradeoff, the model became more sensitive and intervention-focused
 
-LightGBM
+---
 
-Used evaluation metrics:
+## 💡 Key Insights
 
-Accuracy
+- `productivity_score` and `anxiety_score` are strong predictors of mental health risk  
+- LightGBM outperformed others in **recall**, especially for High risk  
+- Simpler models (like Logistic Regression) still gave strong performance
 
-Precision
+---
 
-Recall
+## 🚀 Future Work
 
-F1 Score (macro)
+- Add more behavioral and stress-related features (e.g., `stress_level`, `mental_health_history`)
+- Fine-tune with **custom class weights**
+- Evaluate generalizability on noisy or external data
 
-Focused on High-risk recall as a critical metric
+---
 
-📈 Results
-Model	Accuracy	High Recall	F1 Score (Macro)
-Logistic Regression	0.890	0.87	0.88
-Random Forest	0.857	0.86	0.84
-XGBoost	0.887	0.87	0.88
-LightGBM (Tuned)	0.872	0.93	0.87
+## 👩‍💻 Authors
 
-⚡ After tuning LightGBM (with recall_macro as scoring), we achieved 93% recall for High-risk cases
+- [Your Name]  
+- [Teammate 1]  
+- [Teammate 2]
 
-Slight trade-off in accuracy was acceptable to increase model sensitivity for critical predictions
+---
 
-🔧 Tuning Strategy
-Used GridSearchCV to optimize LightGBM hyperparameters:
-
-learning_rate, num_leaves, n_estimators, max_depth
-
-Scoring objective: recall_macro
-
-Goal: Maximize recall across all classes, especially High-risk
-
-💡 Key Insights
-Productivity score and anxiety score were highly correlated with mental health risk
-
-Simple models (like Logistic Regression) performed competitively
-
-Prioritizing recall over accuracy led to more responsible, real-world-aligned performance
-
-🚀 Future Improvements
-Experiment with custom class weights to further emphasize High-risk detection
-
-Add more features such as stress_level or mental_health_history
-
-Test model robustness on unseen or noisy data
-
-Deploy model for potential real-time mental health screening scenarios
+## 📁 Project Structure
 
