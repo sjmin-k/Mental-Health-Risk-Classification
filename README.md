@@ -68,15 +68,3 @@
 - Fine-tune with **custom class weights**
 - Evaluate generalizability on noisy or external data
 
----
-
-## 👩‍💻 Authors
-
-- [Your Name]  
-- [Teammate 1]  
-- [Teammate 2]
-
----
-
-## 📁 Project Structure
-
